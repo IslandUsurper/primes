@@ -1,0 +1,5 @@
+[package]
+
+name = "primes"
+version = "0.0.1"
+authors = ["Lyle Mantooth <lyle.mantooth@primasupply.com>"]
