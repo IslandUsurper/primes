@@ -1,3 +1,4 @@
+use std::collections::smallintmap::SmallIntMap;
 use std::collections::TreeSet;
 use std::iter;
 
@@ -43,6 +44,21 @@ pub fn get_primes(n: uint) -> TreeSet<uint> {
     }
 
     primes
+}
+
+pub fn sieve(max: uint) -> TreeSet<uint> {
+    let mut candidates: SmallIntMap<bool> = range(2u, max).map(|x| (x, true)).collect();
+    // Optimizations from Wikipedia: Mark off multiples greater than or equal
+    // to the squares of the primes. Then we don't have to mark off multiples
+    // of the primes greater than the square root of max.
+    for i in range(2u, (max as f64).sqrt().ceil() as uint) {
+        if *(candidates.find(&i).unwrap()) {
+            for j in iter::range_step(i * i, max, i) {
+                candidates.swap(j, false);
+            }
+        }
+    }
+    candidates.iter().filter_map(|(n, &v)| if v { Some(n) } else { None }).collect()
 }
 
 #[test]
@@ -100,4 +116,11 @@ fn get_primes_gives_primes() {
     for i in primes.iter() {
         assert_eq!(is_prime(*i, &empty), true);
     }
+}
+
+#[test]
+fn sieve_to_thirty() {
+    let sprimes = sieve(30u);
+    let iprimes = get_primes(10u);
+    assert_eq!(sprimes, iprimes);
 }
