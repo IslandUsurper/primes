@@ -64,49 +64,49 @@ pub fn sieve(max: uint) -> TreeSet<uint> {
 #[test]
 fn zero_is_not_prime() {
     let primes: TreeSet<uint> = TreeSet::new();
-    assert_eq!(is_prime(0u, &primes), false);
+    assert_eq!(is_prime(0usize, &primes), false);
 }
 
 #[test]
 fn one_is_not_prime() {
     let primes: TreeSet<uint> = TreeSet::new();
-    assert_eq!(is_prime(1u, &primes), false);
+    assert_eq!(is_prime(1usize, &primes), false);
 }
 
 #[test]
 fn two_is_prime() {
     let primes: TreeSet<uint> = TreeSet::new();
-    assert_eq!(is_prime(2u, &primes), true);
+    assert_eq!(is_prime(2usize, &primes), true);
 }
 
 #[test]
 fn three_is_prime() {
     let primes: TreeSet<uint> = TreeSet::new();
-    assert_eq!(is_prime(3u, &primes), true);
+    assert_eq!(is_prime(3usize, &primes), true);
 }
 
 #[test]
 fn four_is_not_prime() {
     let primes: TreeSet<uint> = TreeSet::new();
-    assert_eq!(is_prime(4u, &primes), false);
+    assert_eq!(is_prime(4usize, &primes), false);
 }
 
 #[test]
 fn five_is_prime() {
     let primes: TreeSet<uint> = TreeSet::new();
-    assert_eq!(is_prime(5u, &primes), true);
+    assert_eq!(is_prime(5usize, &primes), true);
 }
 
 #[test]
 fn thirty_one_is_prime() {
     let primes: TreeSet<uint> = TreeSet::new();
-    assert_eq!(is_prime(31u, &primes), true);
+    assert_eq!(is_prime(31usize, &primes), true);
 }
 
 #[test]
 fn thirty_three_is_not_prime() {
     let primes: TreeSet<uint> = TreeSet::new();
-    assert_eq!(is_prime(33u, &primes), false);
+    assert_eq!(is_prime(33usize, &primes), false);
 }
 
 #[test]
