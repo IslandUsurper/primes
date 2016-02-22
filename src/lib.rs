@@ -17,7 +17,7 @@ pub fn is_prime(x: uint, primes: &TreeSet<uint>) -> bool {
         }
         let last = match primes.rev_iter().next() {
             Some(x) => *x,
-            None    => 5u,
+            None    => 5usize,
         };
         for i in iter::range_step(last, (x as f32).sqrt() as uint + 1, 6) {
             if x % i == 0 || x % (i + 2) == 0 {
@@ -29,8 +29,8 @@ pub fn is_prime(x: uint, primes: &TreeSet<uint>) -> bool {
 }
 
 pub fn get_primes(n: uint) -> TreeSet<uint> {
-    let mut primes: TreeSet<uint> = [2u, 3, 5, 7, 11, 13, 17, 19, 23, 29].iter().map(|&x| x).collect();
-    let mut counter = iter::count(29u, 2);
+    let mut primes: TreeSet<uint> = [2usize, 3, 5, 7, 11, 13, 17, 19, 23, 29].iter().map(|&x| x).collect();
+    let mut counter = iter::count(29usize, 2);
 
     while primes.len() < n {
         match counter.next() {
@@ -47,11 +47,11 @@ pub fn get_primes(n: uint) -> TreeSet<uint> {
 }
 
 pub fn sieve(max: uint) -> TreeSet<uint> {
-    let mut candidates: SmallIntMap<bool> = range(2u, max).map(|x| (x, true)).collect();
+    let mut candidates: SmallIntMap<bool> = range(2usize, max).map(|x| (x, true)).collect();
     // Optimizations from Wikipedia: Mark off multiples greater than or equal
     // to the squares of the primes. Then we don't have to mark off multiples
     // of the primes greater than the square root of max.
-    for i in range(2u, (max as f64).sqrt().ceil() as uint) {
+    for i in range(2usize, (max as f64).sqrt().ceil() as uint) {
         if *(candidates.find(&i).unwrap()) {
             for j in iter::range_step(i * i, max, i) {
                 candidates.swap(j, false);
@@ -120,7 +120,7 @@ fn get_primes_gives_primes() {
 
 #[test]
 fn sieve_to_thirty() {
-    let sprimes = sieve(30u);
-    let iprimes = get_primes(10u);
+    let sprimes = sieve(30usize);
+    let iprimes = get_primes(10usize);
     assert_eq!(sprimes, iprimes);
 }
